@@ -11,6 +11,7 @@ import docker
 from pathlib import Path
 import json
 import time
+from typing import Optional, List
 
 
 # ====================
@@ -496,7 +497,7 @@ def list_volumes():
 
 
 @flow
-def cleanup_flow(volume_names: list = None):
+def cleanup_flow(volume_names: Optional[List[str]] = None):
     """Cleanup Docker volumes created by Prefect workflows"""
     
     if volume_names is None:
@@ -549,5 +550,5 @@ if __name__ == "__main__":
     # print(json.dumps(result, indent=2))
     
     # Example 5: Cleanup
-    # result = cleanup_flow()
-    # print(json.dumps(result, indent=2))
+    result = cleanup_flow()
+    print(json.dumps(result, indent=2))
